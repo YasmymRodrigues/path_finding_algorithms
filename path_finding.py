@@ -23,7 +23,7 @@ class Spot: #square
         self.row = row #where
         self.col = col
         self.x = row * width
-        self.y = col * width #track the width of the square - translation of the position the spot on my arr to the
+        self.y = col * width #track the width of the square - translation of the position the spot on my arr
         self.color = WHITE #because change the color
         self.neighbors = []
         self.width = width
@@ -36,16 +36,16 @@ class Spot: #square
         return self.color == RED #where we already look there
 
     def is_open(self):
-        return self.color == GREEN #we are open place
+        return self.color == GREEN #we are openning place
 
     def is_barrier(self):
-        return self.color == BLACK #barreira
+        return self.color == BLACK #Wall
 
     def is_start(self):
         return self.color == ORANGE #start point
 
     def is_end(self):
-        return self.color == TURQUOISE #
+        return self.color == TURQUOISE
 
     def is_blank(self):
         return self.color == WHITE
@@ -84,18 +84,6 @@ class Spot: #square
             self.neighbors.append(grid[self.row - 1][self.col])
         if self.row < self.total_rows - 1 and not grid[self.row + 1][self.col].is_barrier(): #DOWN
             self.neighbors.append(grid[self.row + 1][self.col])
-
-        # if self.row < self.total_rows - 1 and not grid[self.row + 1][self.col].is_barrier(): #DOWN
-        #     self.neighbors.append(grid[self.row + 1][self.col])
-        #
-        # if self.row > 0 and not grid[self.row - 1][self.col].is_barrier(): #UP
-        #     self.neighbors.append(grid[self.row - 1][self.col])
-        #
-        # if self.col < self.total_rows - 1 and not grid[self.row][self.col + 1].is_barrier(): #RIGHT
-        #     self.neighbors.append(grid[self.row][self.col + 1])
-        #
-        # if self.col > 0 and not grid[self.row][self.col - 1].is_barrier(): #LEFT
-        #     self.neighbors.append(grid[self.row][self.col - 1])
 
     def __lt__(self, other): #last them. compare two spots together
         return False
@@ -239,8 +227,6 @@ def draw(win, grid, rows, width, start, end):
     for row in grid:
         for spot in row:
             spot.draw(win)
-    #start.draw(win)
-    #end.draw(win)
 
     draw_grid(win, rows, width)
     pygame.display.update()
